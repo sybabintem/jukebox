@@ -1,0 +1,1037 @@
+/**
+ * Earth's Vitals Jukebox - Accessible Retro-Modern CSS
+ * WCAG 2.2 AAA Compliant | High-Contrast Aerospace Console Aesthetic
+ * Team CosmoCode - NASA Space Apps Challenge 2026 (Dhaka, Bangladesh)
+ */
+
+/* ==========================================================================
+   1. CSS Custom Properties / Design Tokens
+   ========================================================================== */
+:root {
+  --bg-deep-space: #030712;
+  --bg-console-card: #0b132b;
+  --bg-console-elevated: #111e40;
+  --bg-surface-glass: rgba(15, 23, 42, 0.85);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-highlight: #38bdf8;
+
+  --accent-nasa-blue: #0284c7;
+  --accent-nasa-glow: #38bdf8;
+  --accent-brass: #d97706;
+  --accent-gold: #fbbf24;
+
+  --tone-cool: #38bdf8;
+  --tone-baseline: #818cf8;
+  --tone-warm: #fbbf24;
+  --tone-severe: #ef4444;
+
+  --border-subtle: #1e293b;
+  --border-focus: #38bdf8;
+  --border-active: #60a5fa;
+
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --focus-ring: 3px solid var(--border-focus);
+  --focus-offset: 3px;
+  --transition-speed: 0.2s;
+}
+
+/* ==========================================================================
+   2. Reset & Baseline
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-deep-space);
+  color: var(--text-main);
+  font-family: var(--font-family-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Accessible Screen Reader Only Utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Skip Navigation Link */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 1rem;
+  background: var(--accent-gold);
+  color: #000;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Accessible Focus Outlines across ALL interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--focus-ring) !important;
+  outline-offset: var(--focus-offset) !important;
+}
+
+/* ==========================================================================
+   3. Layout & Structure
+   ========================================================================== */
+.jukebox-app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+/* ==========================================================================
+   4. Header & Branding
+   ========================================================================== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header-branding {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nasa-badge {
+  background: linear-gradient(135deg, #1e3a8a, #0369a1);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.3);
+}
+
+.nasa-insignia {
+  font-family: var(--font-family-mono);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.spaceapps-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent-gold);
+  line-height: 1.2;
+}
+
+.header-titles .app-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+  background: linear-gradient(90deg, #f8fafc, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-titles .app-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   5. Synchronous Plain-Text Caption Strip
+   ========================================================================== */
+.caption-container {
+  background: var(--bg-surface-glass);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-nasa-glow);
+  padding: 0.85rem 1.25rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.caption-badge {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: var(--accent-nasa-glow);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.caption-content {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.caption-tag {
+  background: #1e293b;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.caption-tag.projection {
+  background: #78350f;
+  color: var(--accent-gold);
+}
+
+.caption-metric {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  color: var(--accent-nasa-glow);
+}
+
+/* ==========================================================================
+   6. Main Console & Jukebox Chassis
+   ========================================================================== */
+.main-console {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.jukebox-chassis {
+  background: linear-gradient(180deg, var(--bg-console-card) 0%, #070d1e 100%);
+  border: 2px solid #1e293b;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Track Selector Bar */
+.track-selector-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.selector-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.track-btn-group {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.track-select-btn {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: var(--text-muted);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.track-select-btn:hover {
+  background: #1e293b;
+  color: var(--text-main);
+  border-color: #475569;
+}
+
+.track-select-btn.active {
+  background: #0369a1;
+  border-color: var(--accent-nasa-glow);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.track-number {
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.track-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Trend Projection Toggle Switch */
+.toggle-control-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.toggle-switch-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  width: 44px;
+  height: 24px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 20px;
+  position: relative;
+  transition: var(--transition-speed);
+}
+
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  top: 2px;
+  left: 2px;
+  transition: var(--transition-speed);
+}
+
+.toggle-input:checked + .toggle-slider {
+  background: var(--accent-brass);
+  border-color: var(--accent-gold);
+}
+
+.toggle-input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.toggle-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Track Metadata Card */
+.track-meta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.track-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.track-meta-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.track-meta-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.telemetry-readout {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.readout-box {
+  background: #030712;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+}
+
+.readout-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.readout-value {
+  font-family: var(--font-family-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.anomaly-pill {
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+}
+
+.pill-cool { color: var(--tone-cool); }
+.pill-neutral { color: var(--tone-baseline); }
+.pill-warm { color: var(--tone-warm); }
+.pill-severe { color: var(--tone-severe); text-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+
+.track-meta-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Context Banner (Langtang Lirung) */
+.context-banner {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid #475569;
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+.banner-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.banner-body {
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.banner-body strong {
+  color: var(--accent-gold);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* ==========================================================================
+   7. NASA GIBS Satellite Frame Visualizer
+   ========================================================================== */
+.gibs-visual-frame {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  aspect-ratio: 16 / 9;
+  max-height: 380px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gibs-svg-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.gibs-frame-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   8. Progress Bar & Decade Scroller
+   ========================================================================== */
+.progress-container {
+  height: 6px;
+  background: #0f172a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-track {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #fbbf24, #ef4444);
+  transition: width 0.3s ease;
+}
+
+.timeline-scroller {
+  overflow-x: auto;
+  padding: 0.4rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0b132b;
+}
+
+.timeline-chips {
+  display: flex;
+  gap: 0.45rem;
+  min-width: max-content;
+}
+
+.timeline-chip {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.timeline-chip:hover {
+  background: #1e293b;
+  color: #fff;
+  border-color: #475569;
+}
+
+.timeline-chip.active {
+  background: var(--accent-nasa-blue);
+  color: #fff;
+  border-color: var(--accent-nasa-glow);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+.timeline-chip.projection-chip {
+  border-style: dashed;
+  border-color: var(--accent-brass);
+}
+
+/* ==========================================================================
+   9. Primary Controls Dock
+   ========================================================================== */
+.jukebox-controls-dock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+}
+
+.step-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.65rem 1.1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-speed) ease;
+  user-select: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0369a1, #075985);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.6);
+}
+
+.btn-secondary {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background: #1e293b;
+  border-color: #475569;
+}
+
+.btn-control {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: var(--text-main);
+  padding: 0.65rem 0.9rem;
+}
+
+.btn-control:hover {
+  background: #1e293b;
+  border-color: #64748b;
+}
+
+.play-btn {
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+}
+
+.play-btn.playing {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+}
+
+.audio-toggles {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.speech-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.speech-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-nasa-glow);
+  cursor: pointer;
+}
+
+.btn-icon-only {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: var(--text-main);
+  padding: 0.6rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-icon-only:hover {
+  background: #1e293b;
+}
+
+.btn-icon-only.muted {
+  color: var(--tone-severe);
+  border-color: var(--tone-severe);
+}
+
+.volume-slider-group input[type="range"] {
+  width: 90px;
+  accent-color: var(--accent-nasa-glow);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   10. Keyboard Legend Bar
+   ========================================================================== */
+.keyboard-legend-bar {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.shortcut-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  list-style: none;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+kbd {
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-bottom: 2px solid #334155;
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+/* ==========================================================================
+   11. Modals & Dialogs
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1.25rem;
+}
+
+.modal-backdrop.visible {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--bg-console-card);
+  border: 2px solid #334155;
+  border-radius: 12px;
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-large {
+  max-width: 950px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem 0.5rem;
+}
+
+.close-modal-btn:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-intro {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Legend Calibration Grid */
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.85rem;
+}
+
+.legend-tone-btn {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.legend-tone-btn:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+}
+
+.legend-tone-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.tone-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.tone-cool .tone-bullet { background: var(--tone-cool); }
+.tone-baseline .tone-bullet { background: var(--tone-baseline); }
+.tone-warm .tone-bullet { background: var(--tone-warm); }
+.tone-severe .tone-bullet { background: var(--tone-severe); }
+
+.tone-metric {
+  font-family: var(--font-family-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-nasa-glow);
+}
+
+.tone-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.legend-footer-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+/* Accessible Data Table */
+.table-responsive {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.data-table thead th {
+  background: #091224;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.recorded-badge {
+  background: #064e3b;
+  color: #34d399;
+}
+
+.projection-badge {
+  background: #78350f;
+  color: var(--accent-gold);
+}
+
+/* Limitations List */
+.limits-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.limits-list li {
+  background: #0f172a;
+  border-left: 3px solid var(--accent-gold);
+  padding: 0.85rem 1rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.limits-list li strong {
+  color: #fff;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================================================
+   12. Footer
+   ========================================================================== */
+.app-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-sources a {
+  color: var(--accent-nasa-glow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-sources a:hover {
+  color: #fff;
+}
+
+/* ==========================================================================
+   13. Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .track-meta-header {
+    flex-direction: column;
+  }
+
+  .telemetry-readout {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .jukebox-controls-dock {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .step-controls {
+    justify-content: center;
+  }
+
+  .audio-toggles {
+    justify-content: space-between;
+  }
+
+  .shortcut-list {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

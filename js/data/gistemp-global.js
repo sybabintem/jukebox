@@ -1,0 +1,226 @@
+/**
+ * NASA GISTEMP v4 Global Temperature Anomaly Dataset (1880–2024)
+ * Source: NASA Goddard Institute for Space Studies (GISS)
+ * Base Period: 1951–1980 (anomaly in degrees Celsius)
+ * License / Attribution: Public Domain / NASA Open Data Policy
+ */
+
+export const GISTEMP_GLOBAL_DATA = {
+  id: "global-temp",
+  title: "Global Surface Temperature Anomaly",
+  subtitle: "1880–2024 (NASA GISTEMP v4)",
+  baseline: "1951–1980 Base Period (0.0°C reference)",
+  unit: "°C",
+  description: "Global land-ocean temperature anomaly series showing 145 years of planetary temperature departure from the mid-20th century average. Pitch maps to anomaly magnitude; brightness reflects warming acceleration.",
+  historicalContext: "Records derived from thousands of meteorological stations and sea surface temperature buoys compiled by NASA GISS.",
+  decades: [
+    {
+      decade: "1880s",
+      startYear: 1880,
+      endYear: 1889,
+      anomaly: -0.19,
+      minAnomaly: -0.32,
+      maxAnomaly: -0.09,
+      rateOfChange: -0.01,
+      isProjection: false,
+      summary: "Cold baseline era with industrial revolution nascent stage.",
+      gibsPeriod: "1880-1889",
+      gibsImage: "assets/gibs/earth-1880s.webp"
+    },
+    {
+      decade: "1890s",
+      startYear: 1890,
+      endYear: 1899,
+      anomaly: -0.28,
+      minAnomaly: -0.38,
+      maxAnomaly: -0.15,
+      rateOfChange: -0.09,
+      isProjection: false,
+      summary: "Consistent sub-zero anomalies across both hemispheres.",
+      gibsPeriod: "1890-1899",
+      gibsImage: "assets/gibs/earth-1890s.svg"
+    },
+    {
+      decade: "1900s",
+      startYear: 1900,
+      endYear: 1909,
+      anomaly: -0.27,
+      minAnomaly: -0.40,
+      maxAnomaly: -0.14,
+      rateOfChange: 0.01,
+      isProjection: false,
+      summary: "Stable cool climate conditions prior to early 20th century shifts.",
+      gibsPeriod: "1900-1909",
+      gibsImage: "assets/gibs/earth-1900s.svg"
+    },
+    {
+      decade: "1910s",
+      startYear: 1910,
+      endYear: 1919,
+      anomaly: -0.30,
+      minAnomaly: -0.44,
+      maxAnomaly: -0.13,
+      rateOfChange: -0.03,
+      isProjection: false,
+      summary: "Deepest cool anomaly decade in modern instrumental record.",
+      gibsPeriod: "1910-1919",
+      gibsImage: "assets/gibs/earth-1910s.svg"
+    },
+    {
+      decade: "1920s",
+      startYear: 1920,
+      endYear: 1929,
+      anomaly: -0.21,
+      minAnomaly: -0.30,
+      maxAnomaly: -0.09,
+      rateOfChange: 0.09,
+      isProjection: false,
+      summary: "Initial gradual rebound towards mid-century baseline.",
+      gibsPeriod: "1920-1929",
+      gibsImage: "assets/gibs/earth-1920s.svg"
+    },
+    {
+      decade: "1930s",
+      startYear: 1930,
+      endYear: 1939,
+      anomaly: -0.12,
+      minAnomaly: -0.20,
+      maxAnomaly: -0.02,
+      rateOfChange: 0.09,
+      isProjection: false,
+      summary: "Noticeable warming across continental land masses.",
+      gibsPeriod: "1930-1939",
+      gibsImage: "assets/gibs/earth-1930s.svg"
+    },
+    {
+      decade: "1940s",
+      startYear: 1940,
+      endYear: 1949,
+      anomaly: 0.03,
+      minAnomaly: -0.11,
+      maxAnomaly: 0.17,
+      rateOfChange: 0.15,
+      isProjection: false,
+      summary: "First crossing into positive anomaly territory relative to base.",
+      gibsPeriod: "1940-1949",
+      gibsImage: "assets/gibs/earth-1940s.svg"
+    },
+    {
+      decade: "1950s",
+      startYear: 1950,
+      endYear: 1959,
+      anomaly: -0.04,
+      minAnomaly: -0.18,
+      maxAnomaly: 0.06,
+      rateOfChange: -0.07,
+      isProjection: false,
+      summary: "Mid-century plateau with aerosol cooling stabilization.",
+      gibsPeriod: "1950-1959",
+      gibsImage: "assets/gibs/earth-1950s.svg"
+    },
+    {
+      decade: "1960s",
+      startYear: 1960,
+      endYear: 1969,
+      anomaly: 0.02,
+      minAnomaly: -0.10,
+      maxAnomaly: 0.12,
+      rateOfChange: 0.06,
+      isProjection: false,
+      summary: "Slight positive variance; start of sustained satellite monitoring era.",
+      gibsPeriod: "1960-1969",
+      gibsImage: "assets/gibs/earth-1960s.svg"
+    },
+    {
+      decade: "1970s",
+      startYear: 1970,
+      endYear: 1979,
+      anomaly: 0.08,
+      minAnomaly: -0.07,
+      maxAnomaly: 0.20,
+      rateOfChange: 0.06,
+      isProjection: false,
+      summary: "Turn of the curve: steady upward trajectory begins.",
+      gibsPeriod: "1970-1979",
+      gibsImage: "assets/gibs/earth-1970s.svg"
+    },
+    {
+      decade: "1980s",
+      startYear: 1980,
+      endYear: 1989,
+      anomaly: 0.26,
+      minAnomaly: 0.14,
+      maxAnomaly: 0.39,
+      rateOfChange: 0.18,
+      isProjection: false,
+      summary: "Clear rapid warming signal emerges globally.",
+      gibsPeriod: "1980-1989",
+      gibsImage: "assets/gibs/earth-1980s.svg"
+    },
+    {
+      decade: "1990s",
+      startYear: 1990,
+      endYear: 1999,
+      anomaly: 0.40,
+      minAnomaly: 0.23,
+      maxAnomaly: 0.63,
+      rateOfChange: 0.14,
+      isProjection: false,
+      summary: "Strong El Niño years push anomalies past +0.6°C.",
+      gibsPeriod: "1990-1999",
+      gibsImage: "assets/gibs/earth-1990s.svg"
+    },
+    {
+      decade: "2000s",
+      startYear: 2000,
+      endYear: 2009,
+      anomaly: 0.61,
+      minAnomaly: 0.42,
+      maxAnomaly: 0.68,
+      rateOfChange: 0.21,
+      isProjection: false,
+      summary: "Warming acceleration evident across Arctic and oceans.",
+      gibsPeriod: "2000-2009",
+      gibsImage: "assets/gibs/earth-2000s.svg"
+    },
+    {
+      decade: "2010s",
+      startYear: 2010,
+      endYear: 2019,
+      anomaly: 0.88,
+      minAnomaly: 0.72,
+      maxAnomaly: 1.02,
+      rateOfChange: 0.27,
+      isProjection: false,
+      summary: "Hottest decade on instrumental record to that date; first +1.0°C year.",
+      gibsPeriod: "2010-2019",
+      gibsImage: "assets/gibs/earth-2010s.svg"
+    },
+    {
+      decade: "2020s",
+      startYear: 2020,
+      endYear: 2024,
+      anomaly: 1.18,
+      minAnomaly: 1.02,
+      maxAnomaly: 1.28,
+      rateOfChange: 0.30,
+      isProjection: false,
+      summary: "Current 5-year average exceeding +1.18°C above baseline.",
+      gibsPeriod: "2020-2024",
+      gibsImage: "assets/gibs/earth-2020s.svg"
+    }
+  ],
+  projectionDecade: {
+    decade: "2030s (Extrapolated)",
+    startYear: 2025,
+    endYear: 2035,
+    anomaly: 1.42,
+    minAnomaly: 1.30,
+    maxAnomaly: 1.54,
+    rateOfChange: 0.24,
+    isProjection: true,
+    summary: "Simple linear trend extrapolation (1970–2024 slope). NOTE: This is a linear regression, NOT a climate model.",
+    gibsPeriod: "2025-2035 (Model)",
+    gibsImage: "assets/gibs/earth-2030s.svg"
+  }
+};
